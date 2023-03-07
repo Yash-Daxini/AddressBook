@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Country";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Data;
+@model DataTable;
+
+
+
+<div class="@TempData["alertClass"] alert-dismissible fade @TempData["alertDisplay"]" role="alert">
+    <strong>@TempData["alertTitle"] !</strong> @TempData["alertMessage"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="container w-75 text-center">
+
+    @*Serach On Page*@
+    <div class="">
+
+        <form method="post">
+            <div class="mb-3">
+
+                <div class="d-flex justify-content-center align-items-center flex-wrap " >
+
+                <input type="text" class="form-control w-25 m-3" name="CountryName" placeholder="Country Name">
+
+                <input type="text" class="form-control w-25 m-3" name="CountryCode" placeholder="Country Code">
+
+                @*<h1> @TempData["SearchInput"] </h1>*@
+
+                </div>
+
+                <input type="submit" asp-area="LOC_Country" asp-controller="Home" asp-action="SearchByPage" class="btn btn-outline-success m-4" id="searchByPage" value="Search">
+
+                <input type="submit" asp-area="LOC_Country" asp-controller="Home" asp-action="Index" class="btn btn-outline-danger m-4" value="Cancel">
+
+            </div>
+        </form>
+
+    </div>
+
+    <hr />
+
+    <h1>Country</h1>
+    <div class="mt-3 d-flex justify-content-center align-items-center">
+        @*<form asp-area="LOC_Country" asp-controller="Home" >
+            <button type="submit" class="btn btn-light-primary" asp-action="Add">Insert Record</button>
+        </form>*@
+        <a class="btn btn-outline-success mx-5" asp-area="LOC_Country" asp-controller="Home" asp-action="Add">Add Country</a>
+        @*<a asp-area="LOC_Country" asp-controller="Home" asp-action="Add" class="btn green btn-rounded"><i class="fa fa-plus"></i>&nbsp;Add Country</a>*@
+        <nav class="navbar">
+            <div class="container-fluid">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" id="sample_1" placeholder="Search" aria-label="Search">
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <table class="table" id="sample_1">
+        <thead>
+            <tr>
+                <th scope="col">Country Name</th>
+                <th scope="col">Country Cast</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">Modification Date</th>
+                <th colspan="2" scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="sample_2">
+            @foreach (DataRow dr in Model.Rows)
+            {
+                <tr class="content mb-2">
+                    <td>@dr["CountryName"]</td>
+                    <td>@dr["CountryCode"]</td>
+                    <td>@Convert.ToDateTime( dr["CreationDate"] ).ToString("dd-MM-yyyy")</td>
+                    <td>@Convert.ToDateTime( dr["ModificationDate"] ).ToString("dd-MM-yyyy")</td>
+                    <td>
+                        <form asp-area="LOC_Country" asp-controller="Home" asp-action="Delete">
+                            <input type="hidden" name="CountryID" value="@Convert.ToInt32(dr["CountryID"])">
+                            <button type="submit" class="btn btn-outline-danger" onclick='return deleteFunction()'><strong><iconify-icon icon="ic:baseline-delete"></iconify-icon></strong></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-area="LOC_Country" asp-controller="Home" asp-action="Add" asp-route-countryid="@Convert.ToInt32(dr["CountryID"])">
+                            <input type="hidden" name="CountryID" value="@Convert.ToInt32(dr["CountryID"])">
+                            <button type="submit" class="btn btn-outline-primary"><strong><ion-icon name="create-outline"></ion-icon></strong></button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            $("#sample_1").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#sample_2 tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+
+
+
+        function deleteFunction() {
+            if (confirm("Are you sure you want to delele ?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+}
+

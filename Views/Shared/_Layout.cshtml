@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AddressBook</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AddressBook.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AddressBook</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="LOC_Country" asp-action="Index">Countries</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="LOC_State" asp-action="Index">States</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="LOC_City" asp-action="Index">Cities</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="CON_ContactCategory" asp-action="Index">Categories</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="MST_Contact" asp-action="Index">Contact</a>
+        </li>
+        </ul>
+        </div>
+        </div>
+        </nav>*@
+    </header>
+
+    <div class="navigation">
+
+        <ul>
+            <li>
+                <a class="" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="icon"><ion-icon class="ion" name="book-outline"></ion-icon></span>
+                    <span class="title"><h3>AddressBook</h3></span>
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="icon"><ion-icon class="ion" name="home-outline"></ion-icon></span>
+                    <span class="title">Dashbord</span>
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="LOC_Country" asp-controller="Home" asp-action="Index">
+                    <span class="icon"><ion-icon class="ion" name="location-outline"></ion-icon></span>
+                    <span class="title">Country</span>
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="LOC_State" asp-controller="Home" asp-action="Index">
+                    <span class="icon"><ion-icon class="ion" name="location-outline"></ion-icon></span>
+                    <span class="title">State</span>
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="LOC_City" asp-controller="Home" asp-action="Index">
+                    <span class="icon"><ion-icon class="ion" name="location-outline"></ion-icon></span>
+                    <span class="title">City</span>
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="CON_ContactCategory" asp-controller="Home" asp-action="Index">
+                    <span class="icon"><ion-icon class="ion" name="copy-outline"></ion-icon></span>
+                    <span class="title">Category</span>
+                </a>
+            </li>
+            <li>
+                <a class="" asp-area="MST_Contact" asp-controller="Home" asp-action="Index">
+                    <span class="icon"><ion-icon class="ion" name="person-outline"></ion-icon></span>
+                    <span class="title">Contact</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle" onclick="toggleMenu();"></div>
+            <div class="logoName">
+                <div class="logo" ><ion-icon class="ion" name="book-outline"></ion-icon></div>
+                <div class="name" >AddressBook</div>
+            </div>
+            <div class="user">
+                @*<ion-icon name="person-circle-outline"></ion-icon>*@
+                <img src="@Url.Content(ViewBag.PhotoPath)" class="img-fluid" style="width:50px;height:50px;border-radius:40px" />
+            </div>
+            <div>
+                <a href="@Url.Action("Logout", "SEC_User")" class="logout">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </a>
+            </div>
+        </div>
+        @RenderBody()
+    </div>
+
+    @*<div class="container">
+        <main role="main" class="pb-3">
+            
+        </main>
+    </div>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        const toggleMenu = ()=>{
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+            toggle.classList.toggle('active');
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

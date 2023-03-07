@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "InsertOrUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AddressBook.Areas.LOC_Country.Models.LOC_CountryModel;
+
+<div class="container w-50 my-5">
+    <form method="post">
+
+        @Html.HiddenFor(x=>x.CountryID)
+
+        <div class="mb-3">
+            <label class="form-label">Enter Country Name</label>
+            <input type="text" class="form-control my-2 " asp-for="CountryName" placeholder="Country Name" />
+            <span asp-validation-for="CountryName" class="text-danger"></span>
+        </div>
+
+         
+        <div class="mb-3">
+            <label class="form-label">Enter Country Code</label>
+            <input type="text" class="form-control my-2" asp-for="CountryCode" placeholder="Country Code" />
+            <span asp-validation-for="CountryCode" class="text-danger"></span>
+        </div>
+
+        @Html.HiddenFor(x=>x.CreationDate)
+
+        @Html.HiddenFor(x=>x.ModificationDate)
+
+        <input type="submit" class="btn btn-outline-success" asp-area="LOC_Country" asp-controller="Home" asp-action="Save" value="Save" />
+
+        <a type="button" class="btn btn-outline-danger mx-5" asp-area="LOC_Country" asp-controller="Home" asp-action="Index">Cancel</a>
+
+    </form>
+</div>

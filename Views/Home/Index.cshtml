@@ -1,0 +1,176 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.P = ViewBag.PhotoPath;
+}
+
+
+<div class="cardBox">
+    <div class="card">
+        <div>
+            <div class="cardNumber" data-val="@ViewBag.Country">0</div>
+            <div class="cardName">Country</div>
+        </div>
+        <div class="cardIcon">
+            <ion-icon name="location-outline"></ion-icon>
+        </div>
+    </div>
+    <div class="card">
+        <div>
+            <div class="cardNumber" data-val="@ViewBag.State">0</div>
+            <div class="cardName">State</div>
+        </div>
+        <div class="cardIcon">
+            <ion-icon name="location-outline"></ion-icon>
+        </div>
+    </div>
+    <div class="card">
+        <div>
+            <div class="cardNumber" data-val="@ViewBag.City">0</div>
+            <div class="cardName">City</div>
+        </div>
+        <div class="cardIcon">
+            <ion-icon name="location-outline"></ion-icon>
+        </div>
+    </div>
+    <div class="card">
+        <div>
+            <div class="cardNumber" data-val="@ViewBag.ContactCategory">0</div>
+            <div class="cardName">Category</div>
+        </div>
+        <div class="cardIcon">
+            <ion-icon class="ion" name="copy-outline"></ion-icon>
+        </div>
+    </div>
+    <div class="card">
+        <div>
+            <div class="cardNumber" data-val="@ViewBag.Contact">0</div>
+            <div class="cardName">Contact</div>
+        </div>
+        <div class="cardIcon">
+            <ion-icon name="person-outline"></ion-icon>
+        </div>
+    </div>
+    <div class="card">
+        <div>
+            <div class="cardNumber" data-val="@ViewBag.User">0</div>
+            <div class="cardName">Total User</div>
+        </div>
+        <div class="cardIcon">
+            <ion-icon name="people-outline"></ion-icon>
+        </div>
+    </div>
+</div>
+
+
+<div class="homePart">
+    <div class="userFeedback">
+        <h4>User Ratings</h4>
+        <table class="table text-center my-3" cellpadding="40px" cellspacing="40px">
+            <thead>
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Yash Daxini</td>
+                    <td>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Allan Smith</td>
+                    <td>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Amit Shroff</td>
+                    <td>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star-half" class="star"></ion-icon></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Darshan Uni.</td>
+                    <td>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                        <span><ion-icon name="star" class="star"></ion-icon></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="recentUser">
+        <h4>Recent User</h4>
+        <table class="table text-center my-3" cellpadding="40px" cellspacing="40px">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span><ion-icon class="text-info" name="person"></ion-icon></span>
+                    </td>
+                    <td>Yash Daxini</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span><ion-icon class="text-warning" name="person"></ion-icon></span>
+                    </td>
+                    <td>Allan Smith</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span><ion-icon class="text-prinmary" name="person"></ion-icon></span>
+                    </td>
+                    <td>Amit Shroff</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span><ion-icon class="text-danger" name="person"></ion-icon></span>
+                    </td>
+                    <td>Darshan Uni.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    let cardNumbers = document.querySelectorAll(".cardNumber");
+    let interval = 1000;
+
+    cardNumbers.forEach((cardNumber) =>{
+        let startValue = 0;
+        let endValue = parseInt( cardNumber.getAttribute("data-val" ));
+        let duration = Math.floor( interval / endValue );
+        let counter = setInterval(()=>{
+            startValue += 1;
+            cardNumber.textContent = startValue;
+            if(  startValue == endValue ){
+                clearInterval(counter);
+            }
+        },duration);
+    })
+
+</script>

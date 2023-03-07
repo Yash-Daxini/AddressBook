@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Data
+@model DataTable
+
+<div class="@TempData["alertClass"] alert-dismissible fade @TempData["alertDisplay"]" role="alert">
+    <strong>@TempData["alertTitle"] !</strong> @TempData["alertMessage"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="container w-100 text-center">
+
+    @*Serach On Page*@
+    <div class="container">
+
+        <form method="post">
+
+            <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
+
+                <div class="d-flex justify-content-center align-items-center flex-wrap">
+
+                    <input type="text" class="form-control w-25 m-3" name="CountryName" placeholder="Country Name">
+
+                    <input type="text" class="form-control w-25 m-3" name="CountryCode" placeholder="Country Code">
+
+                    <input type="text" class="form-control w-25 m-3" name="StateName" placeholder="State Name">
+
+                    <input type="text" class="form-control w-25 m-3" name="StateCode" placeholder="State Code">
+
+                    <input type="text" class="form-control w-25 m-3" name="CityName" placeholder="City Name">
+
+                    <input type="text" class="form-control w-25 m-3" name="CityCode" placeholder="City Code">
+
+                    <input type="text" class="form-control w-25 m-3" name="ContactCategoryName" placeholder="Category">
+
+                    <input type="text" class="form-control w-25 m-3" name="ContactName" placeholder="Name">
+
+                </div>
+
+                <div>
+                    <input type="submit" asp-area="MST_Contact" asp-controller="Home" asp-action="SearchByPage" class="btn btn-outline-success m-4" id="searchByPage" value="Search">
+
+                    <input type="submit" asp-area="MST_Contact" asp-controller="Home" asp-action="Index" class="btn btn-outline-danger m-4" value="Cancel">
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+    <hr />
+
+
+    <div class="text-center"><h1>Contacts</h1></div>
+    <div class="my-4 d-flex justify-content-center align-items-center">
+        <a class="btn btn-outline-success mx-5" asp-area="MST_Contact" asp-controller="Home" asp-action="Add">Add Contact</a>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" id="sample_1" placeholder="Search" aria-label="Search">
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid MST_Contact">
+        <table class="table" id="sample_1">
+            <thead>
+                <tr>
+                    <th scope="col">Profile Photo</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Country Name</th>
+                    <th scope="col">State Name</th>
+                    <th scope="col">City Name</th>
+                    <th scope="col">Category</th>
+                    @*<th scope="col">Creation Date</th>
+                    <th scope="col">Modification Date</th>*@
+                    <th colspan="2" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="sample_2">
+                @foreach (DataRow dr in Model.Rows)
+                {
+                    <tr class="content mb-2">
+                        <td><img src="@Url.Content(@dr["PhotoPath"].ToString())" class="img-fluid" style="width:50px;height:50px;border-radius:40px" /></td>
+                        <td>@dr["ContactName"]</td>
+                        <td>@dr["ContactMobileNumber"]</td>
+                        <td>@dr["ContactAddress"]</td>
+                        <td>@dr["ContactEmail"]</td>
+                        <td>@dr["CountryName"]</td>
+                        <td>@dr["StateName"]</td>
+                        <td>@dr["CityName"]</td>
+                        <td>@dr["ContactCategoryName"]</td>
+                        @*<td><img src="wwwroot/" + @(dr["PhotoPath"]) /></td>*@
+                        @*<td>@dr["PhotoPath"]</td>*@
+                        @*<td>@Convert.ToDateTime( dr["CreationDate"] ).ToString("dd-MM-yy")</td>
+                        <td>@Convert.ToDateTime( dr["ModificationDate"] ).ToString("dd-MM-yy")</td>*@
+                        <td>
+                            <form asp-area="MST_Contact" asp-controller="Home" asp-action="Delete">
+                                <input type="hidden" name="ContactID" value="@Convert.ToInt32(dr["ContactID"])">
+                                <button type="submit" class="btn btn-outline-danger" onclick='return deleteFunction()'><strong><iconify-icon icon="ic:baseline-delete"></iconify-icon></strong></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-area="MST_Contact" asp-controller="Home" asp-action="Add">
+                                <input type="hidden" name="ContactID" value="@Convert.ToInt32(dr["ContactID"])">
+                                <button type="submit" class="btn btn-outline-primary"><strong><ion-icon name="create-outline"></ion-icon></strong></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+    </div>
+
+</div>
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            $("#sample_1").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#sample_2 tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+
+        function deleteFunction(){
+            if(confirm("Are you sure you want to delele ?")){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    </script>
+}
+

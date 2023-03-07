@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "InsertOrUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AddressBook.Areas.CON_ContactCategory.Models.CON_ContactCategoryModel;
+
+<div class="container w-50 my-5">
+    <form method="post" asp-area="CON_ContactCategory" asp-controller="Home" asp-action="Save">
+
+        @Html.HiddenFor(x=>x.ContactCategoryID)
+
+        <div class="mb-3">
+            <label class="form-label">Enter Country Name</label>
+            <input type="text" class="form-control my-2" asp-for="ContactCategoryName" placeholder="Category Name" />
+            <span asp-validation-for="ContactCategoryName" class="text-danger"></span>
+        </div>
+
+        @Html.HiddenFor(x=>x.CreationDate)
+
+        @Html.HiddenFor(x=>x.ModificationDate)
+
+        <input type="submit" class="btn btn-outline-success" value="Save" />
+
+        <a class="btn btn-outline-danger mx-5" asp-area="CON_ContactCategory" asp-controller="Home" asp-action="Index">Cancel</a>
+
+    </form>
+</div>
