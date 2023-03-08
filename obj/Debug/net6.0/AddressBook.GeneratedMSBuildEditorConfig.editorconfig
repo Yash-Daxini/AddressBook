@@ -88,12 +88,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU0VDX1VzZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[H:/Y/DL/DotNet/AddressBook/Views/SEC_User/SEC_UserSignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU0VDX1VzZXJcU0VDX1VzZXJTaWduVXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [H:/Y/DL/DotNet/AddressBook/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [H:/Y/DL/DotNet/AddressBook/Views/Shared/_Layout_Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/Y/DL/DotNet/AddressBook/Views/Shared/_Layout_SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfU2lnblVwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [H:/Y/DL/DotNet/AddressBook/Views/Shared/_ValidationScriptsPartial.cshtml]

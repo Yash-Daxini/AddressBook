@@ -3,9 +3,9 @@
 }
 @model SEC_UserModel
 <!-- BEGIN LOGO -->
-<div class="logo container  my-5 backgroundColorBlue">
+<div class="logo container  my-3 backgroundColorBlue">
     <div class="text-center">
-        <h2 class="my-5">Address Book</h2>
+        <h2 class="my-3">Address Book</h2>
     </div>
     <div class="content container backgroundColorBlueLite w-50">
 
@@ -31,10 +31,22 @@
             <div class="form-actions text-center">
                 <button type="submit" class="loginBtn my-3 rounded-3">Login</button>
             </div>
+
         </form>
+
+        <form class="form-group mb-3" asp-controller="SEC_User" asp-action="SignUp">
+            <div class="form-actions text-center">
+                <h5>Don't Have Account ?</h5>
+                <button class="signup my-3 rounded-3">Sign Up</button>
+            </div>
+        </form>
+
+
         <!-- END LOGIN FORM -->
     </div>
 </div>
+
+
 
 @section Scripts {
     @{

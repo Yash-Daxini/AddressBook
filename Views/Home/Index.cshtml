@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.P = ViewBag.PhotoPath;
 }
 
 
@@ -163,11 +162,16 @@
     cardNumbers.forEach((cardNumber) =>{
         let startValue = 0;
         let endValue = parseInt( cardNumber.getAttribute("data-val" ));
-        let duration = Math.floor( interval / endValue );
+        let duration;
+        duration = Math.floor(interval / endValue);
         let counter = setInterval(()=>{
             startValue += 1;
             cardNumber.textContent = startValue;
-            if(  startValue == endValue ){
+            if (endValue == 0){
+                cardNumber.textContent = 0;
+                clearInterval(counter);
+            }
+            if( startValue == endValue ){
                 clearInterval(counter);
             }
         },duration);

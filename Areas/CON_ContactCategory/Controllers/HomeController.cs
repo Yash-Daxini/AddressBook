@@ -26,6 +26,7 @@ namespace AddressBook.Areas.CON_ContactCategory.Controllers
             string str = Configuration.GetConnectionString("myConnectionString");
             CON_DAL dalloc = new CON_DAL();
             DataTable dt = dalloc.PR_CON_ContactCategory_SelectAll(str,Convert.ToInt32(HttpContext.Session.GetString("UserID")));
+            ViewBag.PhotoPath = HttpContext.Session.GetString("PhotoPath");
             return View("Index", dt);
         }
 

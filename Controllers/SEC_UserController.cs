@@ -8,16 +8,32 @@ namespace AddressBook.Controllers
 {
     public class SEC_UserController : Controller
     {
+
+        #region Config
+
         private IConfiguration Configuration;
         public SEC_UserController(IConfiguration _configuration)
         {
             Configuration = _configuration;
         }
 
+        #endregion
+
+        #region Index
+
         public IActionResult Index()
         {
+            SEC_DAL secUserPhotoPath = new SEC_DAL();
+
+            //string connstr = this.Configuration.GetConnectionString("myConnectionString");
+
+            //ViewBag.PhotoPath = secUserPhotoPath.PR_SEC_User_SelectPhotoPathByPK(connstr, Convert.ToInt32(HttpContext.Session.GetString("UserID")));
             return View();
         }
+
+        #endregion
+
+        #region Login
 
         [HttpPost]
         public IActionResult Login(SEC_UserModel modelSEC_User)
@@ -68,10 +84,77 @@ namespace AddressBook.Controllers
             return RedirectToAction("Index");
         }
 
+        #endregion
+
+        #region Go to Sign Up Page
+
+        public IActionResult SignUp()
+        {
+            return View("SEC_UserSignUp");
+        }
+
+        #endregion
+
+        #region Save Or Sign Up User
+        public IActionResult Save(SEC_UserModel modelSEC_User)
+        {
+
+            if (modelSEC_User.File != null)
+            {
+                string FilePath = "wwwroot\\UploadPhoto";
+                string path = Path.Combine(Directory.GetCurrentDirectory(), FilePath);
+
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                string fileNameWithPath = Path.Combine(path, modelSEC_User.File.FileName);
+
+                modelSEC_User.PhotoPath = "~" + FilePath.Replace("wwwroot\\", "/") + "/" + modelSEC_User.File.FileName;
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    modelSEC_User.File.CopyTo(stream);
+                }
+
+            }
+
+            string str = Configuration.GetConnectionString("myConnectionString");
+
+            SEC_DAL dalloc = new SEC_DAL();
+
+            decimal? result;
+
+            result = dalloc.dbo_PR_SEC_User_Insert(str, modelSEC_User.UserName, modelSEC_User.Password, modelSEC_User.FirstName,modelSEC_User.LastName, modelSEC_User.EmailAddress, modelSEC_User.PhotoPath, null, null);
+
+            //if (result)
+            //{
+            //    TempData["alertClass"] = "alert alert-success";
+            //    TempData["alertDisplay"] = "show";
+            //    TempData["alertTitle"] = "Inserted";
+            //    TempData["alertMessage"] = "Data Inserted Successfully";
+            //}
+            //else
+            //{
+            //    TempData["alertDisplay"] = "show";
+            //    TempData["alertClass"] = "alert alert-danger";
+            //    TempData["alertTitle"] = "Error";
+            //    TempData["alertMessage"] = "Some Error Occured";
+            //}
+
+            return RedirectToAction("Index");
+        }
+
+        #endregion
+         
+        #region Logout
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index");
         }
+
+        #endregion
     }
 }

@@ -11,29 +11,70 @@ html {
         font-size: 16px;
     }
 }
-.loginBtn{
-    background:#fff;
-    color:#333;
-    border:none;
-    cursor:pointer;
-    padding:10px 30px;
-    font-size:16px;
-    font-weight:500;
+.loginBtn {
+    /*background: #fff;*/
+    background: #03a9f4;
+    /*color: #333;*/
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.signUpBtn {
+    /*background: #fff;*/
+    background: #f43648;
+    /*color: #333;*/
+    color:#fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.signup {
+    /*background: #fff;*/
+    background: #f43648;
+    /*color: #333;*/
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.profileImg {
+    margin-top:2px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
 }
 .logout {
     text-decoration: none;
-    font-size: 40px;
-    font-weight: 900;
-    margin-left: 10px;
-    margin-right: 10px;
+    font-size: 35px;
+    font-weight: 800;
 }
 .backgroundColorBlue {
     background: #03a9f4; 
 }
 .backgroundColorBlueLite {
-    padding:100px;
-    background: rgba(255,255,255,0.1); 
-    box-shadow:0 5px 5px rgba(0,0,0,0.15);
+    background: #fff;
+    padding: 80px;
+    /*background: rgba(255,255,255,0.1);*/
+    box-shadow: 0 5px 5px rgba(0,0,0,0.15);
+}
+.backgroundColorRed {
+    background: #f43648; 
+}
+.backgroundColorRedLite {
+    background: #fff;
+    padding: 80px;
+    /*background: rgba(255,255,255,0.1);*/
+    box-shadow: 0 5px 5px rgba(0,0,0,0.15);
+}
+form input{
+    color:#333;
 }
 body {
     /*overflow-x:hidden;*/
@@ -206,7 +247,7 @@ body {
 }
 .main .topbar .name{
     font-size:30px;
-    padding:0 20px;
+    padding:0 15px;
 }
 .main .topbar .user{
     position:relative;

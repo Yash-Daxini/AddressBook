@@ -28,6 +28,7 @@ namespace AddressBook.Areas.LOC_City.Controllers
             string str = Configuration.GetConnectionString("myConnectionString");
             LOC_DAL dalloc = new LOC_DAL();
             DataTable dt = dalloc.PR_LOC_City_SelectAll(str,Convert.ToInt32(HttpContext.Session.GetString("UserID")));
+            ViewBag.PhotoPath = HttpContext.Session.GetString("PhotoPath");
             return View("Index", dt);
         }
         #endregion

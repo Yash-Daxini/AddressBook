@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Y4AGXdO9Y0gR3KnTuqDNrg6Sm/cfW6xFyhca+Q1G9wQ=",
+  "Hash": "n0RcCzabLVDZXbPxPojwmoMwhrNVxxvXYX3eQPY+e0o=",
   "Source": "AddressBook",
   "BasePath": "_content/AddressBook",
   "Mode": "Default",
@@ -1171,6 +1171,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadPhoto\\Screenshot (14).png"
+    },
+    {
+      "Identity": "H:\\Y\\DL\\DotNet\\AddressBook\\wwwroot\\UploadPhoto\\Screenshot (3).png",
+      "SourceId": "AddressBook",
+      "SourceType": "Discovered",
+      "ContentRoot": "H:\\Y\\DL\\DotNet\\AddressBook\\wwwroot\\",
+      "BasePath": "_content/AddressBook",
+      "RelativePath": "UploadPhoto/Screenshot (3).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadPhoto\\Screenshot (3).png"
     },
     {
       "Identity": "H:\\Y\\DL\\DotNet\\AddressBook\\wwwroot\\UploadPhoto\\Screenshot (4).png",

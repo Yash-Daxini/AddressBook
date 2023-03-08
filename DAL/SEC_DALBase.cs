@@ -58,7 +58,7 @@ namespace AddressBook.DAL
         #endregion
 
         #region Method: dbo_PR_SEC_User_Insert
-        public decimal? dbo_PR_SEC_User_Insert(string ConnStr,string UserName, string Password, string FirstName, string LastName, string EmailAddress, string PhotoPath,DateTime? Created,DateTime? Modified)
+        public decimal? dbo_PR_SEC_User_Insert(string ConnStr,string UserName, string Password, string FirstName, string LastName, string EmailAddress, string PhotoPath,DateTime? CreationDate,DateTime? ModificationDate)
         {
             try
             {
@@ -70,8 +70,8 @@ namespace AddressBook.DAL
                 sqlDB.AddInParameter(dbCMD, "LastName", SqlDbType.VarChar, LastName);
                 sqlDB.AddInParameter(dbCMD, "EmailAddress", SqlDbType.VarChar, EmailAddress);
                 sqlDB.AddInParameter(dbCMD, "PhotoPath", SqlDbType.VarChar, PhotoPath);
-                sqlDB.AddInParameter(dbCMD, "Created", SqlDbType.DateTime, Created);
-                sqlDB.AddInParameter(dbCMD, "Modified", SqlDbType.DateTime, Modified);
+                sqlDB.AddInParameter(dbCMD, "CreationDate", SqlDbType.DateTime, CreationDate);
+                sqlDB.AddInParameter(dbCMD, "ModificationDate", SqlDbType.DateTime, ModificationDate);
 
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
